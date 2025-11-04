@@ -1,7 +1,7 @@
 {
-  "name": "thunder-ui",
+  "name": "@thunder-source/thunder-ui",
   "version": "1.0.0",
-  "description": "Reusable React component library for HRMS application",
+  "description": "Reusable React component library",
   "main": "./dist/index.js",
   "module": "./dist/index.esm.js",
   "types": "./dist/index.d.ts",
@@ -13,6 +13,9 @@
       "default": "./dist/index.esm.js"
     },
     "./styles": "./dist/styles.css"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "files": [
     "dist",
