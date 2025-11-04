@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import type { UseEmblaCarouselType } from "embla-carousel-react";
 import * as React from "react";
 import {

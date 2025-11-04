@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Badge } from "./badge";
 import { type IconMapKey, iconMap } from "./icon-map";
 

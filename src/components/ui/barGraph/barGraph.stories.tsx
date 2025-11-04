@@ -1,5 +1,5 @@
 import type { ChartConfig } from "@/components/ui";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Component as BarGraph } from "./barGraph";
 
 const chartData = [

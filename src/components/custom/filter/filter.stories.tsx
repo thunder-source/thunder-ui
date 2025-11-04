@@ -12,8 +12,8 @@ import type {
 } from "@/types";
 import type { FilterAllEmployeesValues } from "@/types"; // ← import your AllEmployees values type
 import { typedOnChange } from "@/utils";
-import { action } from "@storybook/addon-actions";
-import type { Meta } from "@storybook/react";
+import { action } from "storybook/actions";
+import type { Meta } from "@storybook/react-vite";
 import { useState } from "react";
 import type { ComponentProps } from "react";
 import { Filter } from "./filter";

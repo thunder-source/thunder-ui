@@ -1,5 +1,5 @@
 import { SHORT_TABLE_MOCK_DATA } from "@/constants";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { ShortTable, type ShortTableProps } from "./shortTable";
 
 export default {

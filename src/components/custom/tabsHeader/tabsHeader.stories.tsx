@@ -1,5 +1,5 @@
 import { InputField } from "@/components/base/inputField";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { CircleFadingPlus, Download } from "lucide-react";
 import { TabsHeader, type TabsHeaderProps } from "./tabsHeader";
 

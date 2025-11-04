@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { FormModal } from "./formModal";
 
 const meta: Meta<typeof FormModal> = {

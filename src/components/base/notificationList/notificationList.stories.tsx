@@ -1,5 +1,5 @@
-import { action } from "@storybook/addon-actions";
-import type { Meta, StoryObj } from "@storybook/react";
+import { action } from "storybook/actions";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { AlertTriangle, Bell, CheckCircle, XCircle } from "lucide-react";
 import React from "react";
 import NotificationList from "./notificationList";

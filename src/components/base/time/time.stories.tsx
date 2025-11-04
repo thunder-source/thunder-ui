@@ -1,5 +1,5 @@
-import { action } from "@storybook/addon-actions";
-import type { Meta, StoryFn } from "@storybook/react";
+import { action } from "storybook/actions";
+import type { Meta, StoryFn } from "@storybook/react-vite";
 import { TimeSelector } from "./time"; // Adjust the import based on your file structure
 
 export default {

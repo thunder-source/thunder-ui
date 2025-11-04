@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui";
-import { action } from "@storybook/addon-actions";
-import type { Meta, StoryObj } from "@storybook/react";
+import { action } from "storybook/actions";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { expect, userEvent, within } from "@storybook/test";
 import { ActionModal, ModalVariant } from "./actionModal";
 

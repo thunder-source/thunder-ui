@@ -1,5 +1,5 @@
 import { getIconComponent } from "@/utils/getIconComponent";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import * as LucideIcons from "lucide-react";
 import { Button } from "./button";
 

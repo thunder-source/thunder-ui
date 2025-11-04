@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import type { ColumnDef, Row } from "@tanstack/react-table";
 import type React from "react";
 import { useMemo, useState } from "react";

@@ -6,7 +6,7 @@ export default {
 
 // import { SidebarProvider } from "@/components/ui";
 // import { StorybookContextWrapper } from "@/utils";
-// import type { Meta, StoryObj } from "@storybook/react";
+// import type { Meta, StoryObj } from "@storybook/react-vite";
 // import { AppSidebar } from "./sidebar";
 
 // const meta: Meta<typeof SidebarWithProvider> = {
