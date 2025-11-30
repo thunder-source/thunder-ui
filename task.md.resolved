@@ -1,0 +1,266 @@
+# Thunder-UI Issue Resolution Plan
+
+> **Based on Issues Report:** 2025-11-30  
+> **Project:** Thunder-UI v1.0.11  
+> **Status:** Active Development
+
+---
+
+## Phase 1: Critical Fixes (Must Fix Before Production) 🔴
+
+### Issue #1: Empty CSS Bundle ❗❗❗
+- [x] Verify current CSS bundle content in [dist/styles.css](file:///f:/WORK/PERSONAL%20PROJECTS/thunder-ui/dist/styles.css)
+- [x] Review PostCSS configuration in `rollup.config.js`
+- [x] Fix Tailwind CSS processing and extraction
+- [x] Run clean build: `pnpm run clean && pnpm run build`
+- [x] Verify [dist/styles.css](file:///f:/WORK/PERSONAL%20PROJECTS/thunder-ui/dist/styles.css) now contains actual CSS content (>1KB)
+- [ ] Create a test consumer app to verify CSS import works
+- [ ] Test that styles are applied correctly in consumer app
+
+### Issue #2: Unwanted Files in dist/ ❗❗
+- [x] Remove unwanted files from `dist/`:
+  - [x] Delete `evisapdf.pdf` (1.4 MB)
+  - [x] Delete `iframe.html` (18 KB Storybook artifact)
+  - [x] Delete `vite.svg` (1.5 KB development asset)
+  - [x] Delete `vite-inject-mocker-entry.js` (29 KB test artifact)
+  - [x] Delete `icons/` directory
+  - [x] Delete `images/` directory
+- [x] Update `.npmignore` to prevent these files in future builds
+- [x] Add patterns to exclude:
+  - [x] `*.pdf`
+  - [x] `iframe.html`
+  - [x] `*.svg` (except exported component SVGs)
+  - [x] `*mocker*.js`
+  - [x] `icons/`
+  - [x] `images/`
+- [x] Run clean build to verify exclusions work
+- [x] Check package size is reduced by ~1.5MB
+
+### Issue #3: Uncommitted Git Changes ❗
+- [ ] Review all uncommitted changes
+- [ ] Stage modified files:
+  - [ ] `.npmignore`
+  - [ ] `package.json`
+  - [ ] `pnpm-lock.yaml`
+  - [ ] `rollup.config.js`
+  - [ ] [src/index.ts](file:///f:/WORK/PERSONAL%20PROJECTS/thunder-ui/src/index.ts)
+  - [ ] `vite.config.ts`
+- [ ] Review deleted component files (confirm deletion is intentional):
+  - [ ] `src/components/ui/calendar/index.tsx`
+  - [ ] `src/components/ui/carousel/index.tsx`
+  - [ ] `src/components/ui/input/index.tsx`
+  - [ ] `src/components/ui/pagination/index.tsx`
+  - [ ] `src/components/ui/select/index.tsx`
+  - [ ] `src/components/ui/switch/index.tsx`
+- [ ] Add new untracked files:
+  - [ ] `FIXES_APPLIED.md`
+  - [ ] `LICENSE`
+  - [ ] `NPM_PACKAGE_REVIEW.md`
+  - [ ] `README.md`
+  - [ ] New `.ts` component index files
+- [ ] Commit all changes with proper message
+- [ ] Verify git status is clean
+
+---
+
+## Phase 2: High Priority Fixes (Fix Before Next Release) ⚠️
+
+### Issue #4: Large Bundle Size
+- [ ] Analyze current bundle composition
+  - [ ] Use bundle analyzer tool
+  - [ ] Identify largest dependencies
+- [ ] Implement bundle optimizations:
+  - [ ] Review and externalize appropriate dependencies
+  - [ ] Implement code splitting for large components
+  - [ ] Add tree-shaking optimizations
+  - [ ] Remove unused exports
+- [ ] Configure Rollup optimizations:
+  - [ ] Enable minification for production
+  - [ ] Review plugin configurations
+  - [ ] Optimize chunk splitting
+- [ ] Target bundle size reduction:
+  - [ ] Reduce ESM bundle from 4.0 MB to <2 MB
+  - [ ] Reduce CJS bundle from 4.0 MB to <2 MB
+- [ ] Consider disabling source maps for production:
+  - [ ] Keep source maps for development only
+  - [ ] Or reduce source map size (inline, hidden-source-map)
+- [ ] Test build and verify size reduction
+- [ ] Document bundle size in README
+
+### Issue #5: TypeScript Strict Mode Disabled
+- [x] Create plan for gradual strict mode enablement
+- [x] Enable individual strict checks first:
+  - [x] Set `"strictNullChecks": true`
+  - [x] Fix all strictNullChecks errors
+  - [x] Set `"strictFunctionTypes": true`
+  - [x] Fix all strictFunctionTypes errors
+  - [x] Set `"noImplicitAny": true`
+  - [x] Fix all noImplicitAny errors
+- [x] Enable remaining strict checks:
+  - [x] Set `"strictBindCallApply": true`
+  - [x] Set `"strictPropertyInitialization": true`
+  - [x] Set `"noImplicitThis": true`
+  - [x] Set `"alwaysStrict": true`
+- [x] Finally enable full strict mode:
+  - [x] Set `"strict": true` in `tsconfig.build.json`
+- [ ] Run build and verify no type errors
+- [ ] Update documentation about type safety
+
+### Issue #6: Missing Type Declaration Maps
+- [x] Open `tsconfig.build.json`
+- [x] Add `"declarationMap": true` to compiler options
+- [/] Run build: `pnpm run build`
+- [ ] Verify `.d.ts.map` files are generated in `dist/`
+- [ ] Test IDE experience in a consumer project
+- [ ] Verify "Go to Definition" navigates to source files
+
+---
+
+## Phase 3: Medium Priority Issues (Should Fix Soon) ⚡
+
+### Issue #7: Incomplete Package Metadata
+- [ ] Verify author information
+  - [ ] Confirm "Praditya Manjhi" is correct
+  - [ ] Add email if appropriate
+- [ ] Update repository URL:
+  - [ ] Replace placeholder: `https://github.com/thunder-source/thunder-ui.git`
+  - [ ] Use actual repository URL
+- [ ] Add additional metadata:
+  - [ ] Add `bugs` field
+  - [ ] Add `homepage` field
+  - [ ] Verify `keywords` are comprehensive
+- [ ] Update `package.json`
+- [ ] Commit changes
+
+### Issue #8: No Workspace/Monorepo Configuration
+- [ ] Evaluate if monorepo structure would benefit project
+- [ ] Document decision (keep single package vs migrate to monorepo)
+- [ ] If staying single package:
+  - [ ] No action needed
+- [ ] If migrating to monorepo:
+  - [ ] Create `pnpm-workspace.yaml`
+  - [ ] Restructure project into packages
+  - [ ] Update build scripts
+  - [ ] Update CI/CD configuration
+
+### Issue #9: Storybook Build Memory
+- [ ] Review Storybook configuration
+- [ ] Optimize Storybook performance:
+  - [ ] Review addon usage, remove unused addons
+  - [ ] Implement lazy-loading for heavy components
+  - [ ] Configure component story splitting
+- [ ] Test if memory flag can be reduced
+- [ ] Try reducing `--max-old-space-size` from 4096 to 2048
+- [ ] Document memory requirements if necessary
+
+---
+
+## Phase 4: Low Priority Issues (Nice to Have) 💡
+
+### Issue #10: Development Files in Repository
+- [x] Open `.gitignore`
+- [x] Add pattern to ignore `debug-storybook.log`
+- [x] Add pattern: `debug-*.log`
+- [x] Remove tracked `debug-storybook.log` file
+- [/] Commit `.gitignore` changes
+- [x] Verify file is now ignored
+
+### Issue #11: Multiple Config Formats
+- [x] Identify which config files are actually being used:
+  - [x] Test with `tailwind.config.js`
+  - [x] Test with `tailwind.config.json`
+- [x] Decide on standard format (recommend `.js` for flexibility)
+- [x] Remove unused config file(s)
+- [/] Verify builds still work
+- [ ] Update documentation with chosen format
+- [/] Commit changes
+
+### Issue #12: Editor Config Files
+- [ ] Review [.vscode/settings.json](file:///f:/WORK/PERSONAL%20PROJECTS/thunder-ui/.vscode/settings.json)
+- [ ] Remove personal preference settings
+- [ ] Keep only team-relevant settings:
+  - [ ] Formatter configuration
+  - [ ] Recommended extensions
+  - [ ] Project-specific settings
+- [ ] Document VS Code setup in README
+- [ ] Commit cleaned configuration
+
+---
+
+## Pre-Release Testing Checklist 🧪
+
+### Build Verification
+- [ ] Run full clean build: `pnpm run clean && pnpm run build`
+- [ ] Verify [dist/styles.css](file:///f:/WORK/PERSONAL%20PROJECTS/thunder-ui/dist/styles.css) contains CSS content (not just comment)
+- [ ] Check `dist/` folder size is reasonable (<3MB without source maps)
+- [ ] Verify no unwanted files in `dist/`
+- [ ] Confirm type declarations (`.d.ts`) are generated
+- [ ] Confirm declaration maps (`.d.ts.map`) are generated
+
+### Package Testing
+- [ ] Create test package: `npm pack`
+- [ ] Create test consumer project
+- [ ] Install `.tgz` file in test project
+- [ ] Test importing components:
+  - [ ] Import at least 3 different components
+  - [ ] Verify components render correctly
+- [ ] Test importing styles:
+  - [ ] Import CSS file
+  - [ ] Verify styles are applied
+- [ ] Test TypeScript support:
+  - [ ] Verify types are available
+  - [ ] Test "Go to Definition" functionality
+  - [ ] Verify no type errors
+
+### Code Quality
+- [ ] Run linting: `pnpm run lint`
+- [ ] Fix any linting errors
+- [ ] Run type checking: `pnpm run type-check` (if available)
+- [ ] Fix any type errors
+
+### Documentation
+- [ ] Build Storybook: `pnpm run build-storybook`
+- [ ] Verify Storybook builds without errors
+- [ ] Preview built Storybook
+- [ ] Verify all component stories work
+
+### Git Status
+- [ ] Verify all changes are committed
+- [ ] Verify no untracked files (except ignoreable ones)
+- [ ] Verify git status is clean
+- [ ] Create git tag for release (if ready)
+
+---
+
+## Success Metrics 📊
+
+### Critical Success Criteria ✅
+- [ ] CSS bundle is >10KB and contains actual styles
+- [ ] Package size is reduced by at least 1.5MB
+- [ ] All git changes are committed
+- [ ] Package installs and works in test project
+
+### High Priority Success Criteria ✅
+- [ ] Bundle size reduced to <2MB per bundle
+- [ ] TypeScript strict mode enabled
+- [ ] Declaration maps generated
+
+### Medium Priority Success Criteria ✅
+- [ ] Repository URL is updated and valid
+- [ ] Package metadata is complete
+
+### Low Priority Success Criteria ✅
+- [ ] No development artifacts in repository
+- [ ] Config files standardized
+- [ ] Editor config cleaned
+
+---
+
+## Notes 📝
+
+- This plan addresses all issues from the Thunder-UI Issues Report dated 2025-11-30
+- Critical fixes (Phase 1) should be completed before any release
+- High priority fixes (Phase 2) should be completed before next minor/major release
+- Medium and low priority fixes can be addressed in maintenance releases
+- Update this checklist as work progresses
+- Mark items as `[x]` when completed, `[/]` when in progress
