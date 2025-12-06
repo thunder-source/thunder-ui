@@ -28,9 +28,7 @@ export default defineConfig({
     alias: { "@": path.resolve(__dirname, "./src") },
   },
 
-  define: {
-    "process.env.NODE_ENV": JSON.stringify("production"),
-  },
+
 
   build: {
     minify: "terser",
