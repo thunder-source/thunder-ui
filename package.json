@@ -40,6 +40,12 @@
     "test:consumer": "cd test-consumer-app && npm install && npm run dev",
     "pack:test": "npm pack && echo '\n✅ Test package created. Install in test app with: npm install ../*.tgz'"
   },
+  "lint-staged": {
+    "src/**/*.{ts,tsx,js,jsx}": [
+      "biome check --apply",
+      "git add"
+    ]
+  },
   "keywords": [
     "react",
     "components",
@@ -91,7 +97,7 @@
     "@tanstack/react-table": "^8.21.3",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
-    "date-fns": "^4.1.0",
+    "date-fns": "^3.6.0",
     "embla-carousel-react": "^8.6.0",
     "input-otp": "^1.4.2",
     "lucide-react": "^0.488.0",
@@ -144,6 +150,7 @@
     "globals": "^16.0.0",
     "http-server": "^14.1.1",
     "jsdom": "^27.2.0",
+    "lint-staged": "^16.2.7",
     "playwright": "^1.52.0",
     "postcss": "^8.4.49",
     "react": "^19.2.0",
@@ -156,7 +163,7 @@
     "rollup-plugin-postcss": "^4.0.2",
     "rollup-plugin-visualizer": "^6.0.5",
     "simple-git-hooks": "^2.12.1",
-    "storybook": "^10.0.3",
+    "storybook": "^8.6.14",
     "tailwindcss": "^4.1.4",
     "terser": "^5.39.0",
     "typescript": "~5.7.2",
@@ -164,5 +171,13 @@
     "vite": "^6.3.1",
     "vite-plugin-svgr": "^4.3.0",
     "vitest": "^3.1.1"
+  },
+  "pnpm": {
+    "peerDependencyRules": {
+      "allowedVersions": {
+        "react": "19",
+        "react-dom": "19"
+      }
+    }
   }
 }
